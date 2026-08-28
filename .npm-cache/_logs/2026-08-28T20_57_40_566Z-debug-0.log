@@ -1,0 +1,20 @@
+0 verbose cli C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.19.6
+3 silly config load:file:C:\Users\vanitas\AppData\Local\nvm\v20.19.6\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\vanitas\Downloads\SecretAccesFolder\baileysupdate-main\.npmrc
+5 silly config load:file:C:\Users\vanitas\.npmrc
+6 silly config load:file:C:\nvm4w\nodejs\etc\npmrc
+7 verbose title npm pack
+8 verbose argv "pack" "--dry-run" "--json"
+9 verbose logfile logs-max:10 dir:C:\Users\vanitas\Downloads\SecretAccesFolder\baileysupdate-main\.npm-cache\_logs\2026-08-28T20_57_40_566Z-
+10 verbose logfile C:\Users\vanitas\Downloads\SecretAccesFolder\baileysupdate-main\.npm-cache\_logs\2026-08-28T20_57_40_566Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ECONNREFUSED
+13 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+14 verbose cwd C:\Users\vanitas\Downloads\SecretAccesFolder\baileysupdate-main
+15 verbose os Windows_NT 10.0.26200
+16 verbose node v20.19.6
+17 verbose npm  v10.8.2
+18 verbose exit 0
+19 info ok
