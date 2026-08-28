@@ -33,6 +33,7 @@ import {
 	makeEventBuffer,
 	makeNoiseHandler,
 	printQRIfNecessaryListener,
+	delay,
 	promiseTimeout,
 } from '../Utils'
 import {
