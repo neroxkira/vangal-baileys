@@ -23,6 +23,7 @@
     "files": [
         "lib/**/*.js",
         "lib/**/*.d.ts",
+        "lib/**/*.json",
         "WAProto/*.js",
         "WAProto/*.d.ts",
         "engine-requirements.js"
