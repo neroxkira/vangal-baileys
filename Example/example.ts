@@ -14,6 +14,9 @@ const useStore = !process.argv.includes('--no-store')
 const doReplies = process.argv.includes('--do-reply')
 const usePairingCode = process.argv.includes('--use-pairing-code')
 const useMobile = process.argv.includes('--mobile')
+let connectionState: 'open' | 'connecting' | 'close' = 'close'
+let reconnecting = false
+let shouldReconnect = true
 
 // external map to store retry counts of messages when decryption/encryption fails
 // keep this out of the socket itself, so as to prevent a message decryption/encryption loop across socket restarts
@@ -151,6 +154,11 @@ const startSock = async() => {
 	}
 
 	const sendMessageWTyping = async(msg: AnyMessageContent, jid: string) => {
+		if(connectionState !== 'open') {
+			console.log('skip sendMessage: connection is not open')
+			return
+		}
+
 		await sock.presenceSubscribe(jid)
 		await delay(500)
 
@@ -172,12 +180,29 @@ const startSock = async() => {
 			if(events['connection.update']) {
 				const update = events['connection.update']
 				const { connection, lastDisconnect } = update
+				if(connection) {
+					connectionState = connection
+				}
+
+				if(connection === 'open') {
+					reconnecting = false
+				}
+
 				if(connection === 'close') {
-					// reconnect if not logged out
-					if((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
-						startSock()
-					} else {
+					const statusCode = (lastDisconnect?.error as Boom)?.output?.statusCode
+					// only treat real logout as a dead session
+					if(statusCode === DisconnectReason.loggedOut) {
+						shouldReconnect = false
 						console.log('Connection closed. You are logged out.')
+					} else if(shouldReconnect && !reconnecting) {
+						reconnecting = true
+						console.log('Connection closed. Reconnecting...')
+						setTimeout(() => {
+							void startSock().catch(error => {
+								reconnecting = false
+								console.error('Failed to restart connection', error)
+							})
+						}, 1000)
 					}
 				}
 				
