@@ -1,6 +1,6 @@
 {
-    "name": "@vangal/baileys",
-    "version": "1.0.0",
+    "name": "@neroxkira/vangal-baileys",
+    "version": "1.0.1",
     "description": "WhatsApp API Modification By Vangal",
     "keywords": [
         "whatsapp",
@@ -12,9 +12,9 @@
         "botwa",
         "stvnnvs"
     ],
-    "homepage": "https://github.com/neroxkira/vangal",
+    "homepage": "https://github.com/neroxkira/vangal-baileys",
     "repository": {
-        "url": "https://github.com/neroxkira/vangal"
+        "url": "https://github.com/neroxkira/vangal-baileys"
     },
     "license": "MIT",
     "author": "Adhiraj Singh",
